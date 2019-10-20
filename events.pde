@@ -16,15 +16,25 @@ class Event {
 class UpdateText extends Event {
 
 	String string;
+	PVector p;
 
 	UpdateText(String string, int time) {
 		this.time = time;
 		this.timeEnd = time + 60;
 		this.string = string;
+		this.p = new PVector(0,0,0);
+	}
+
+	UpdateText(String string, int time, PVector p) {
+		this.time = time;
+		this.timeEnd = time + 60;
+		this.string = string;
+		this.p = p;
 	}
 
 	void spawn() {
-		textBox.string = string;
+		text1.string = string;
+		text1.p.P.add(p);
 	}
 }
 
@@ -317,6 +327,7 @@ class LookingFor041s051 extends Event {
 	}
 
 	void spawn() {
+		text1.string = "";
 	}
 
 	void update() {
@@ -333,7 +344,6 @@ class LookingFor041s051 extends Event {
 			box.fillStyle.r.X= av[box.i]*0.75*f;
 			box.fillStyle.g.X = av[box.i]*0.5*f;
 			box.fillStyle.b.X = av[box.i]*0.9*f;
-			//box.fillStyle.a.X = av[box.i]*0.9*f;
 			box.w.v.z += av[box.i];
 		}
 	}
@@ -342,11 +352,12 @@ class LookingFor041s051 extends Event {
 class TakeItZone031s041 extends Event {
 	float f = 10;
 	TakeItZone031s041() {
-		time = 31000;
+		time = 31200;
 		timeEnd = 41500;
 	}
 
 	void spawn() {
+		text1.string = "Cause I can't\ntake it";
 		f = 1;
 		for (int i = 0 ; i < boxes.size() ; i ++) {
 			Box3d box = boxes.get(i);
@@ -359,6 +370,10 @@ class TakeItZone031s041 extends Event {
 	}
 
 	void update() {
+		if (currTime > 35100 && currTime < 35300) text1.string = "Don't wanna";
+		if (currTime > 36200 && currTime < 36500) text1.string = "Don't wanna\nbe alone";
+		if (currTime > 37200 && currTime < 37300) text1.string = "But I'm not";
+		if (currTime > 38200 && currTime < 38400) text1.string = "But I'm not\nin the zone";
 		f += 0.015;
 		cam.p.P.z += 0.75;
 		for (Box3d box : boxes) {
@@ -373,7 +388,7 @@ class TakeItZone031s041 extends Event {
 
 class Corner026s31 extends Event {
 	Corner026s31() {
-		time = 26000;
+		time = 25000;
 		timeEnd = 31000;
 	}
 
@@ -388,6 +403,9 @@ class Corner026s31 extends Event {
 	}
 
 	void update() {
+		if (currTime > 27400 && currTime < 27600) text1.string = "Not ready\n";
+		if (currTime > 28400 && currTime < 28600) text1.string = "Not ready\nto resume";
+		if (currTime > 29800 && currTime < 30000) text1.string = "Cause I can't";
 		if (timer.beat && timer.tick % 2 == 1) {
 			for (Box3d box : boxes) {
 				box.fillStyle.addx(55,55,55,55);
@@ -400,17 +418,23 @@ class Corner026s31 extends Event {
 
 class FindMe021s026 extends Event {
 	FindMe021s026() {
-		time = 21500;
+		time = 21400;
 		timeEnd = 26000;
 	}
 
 	void spawn() {
+		text1.string = "Find me";
 		for (Box3d box : boxes) {
 			box.fillStyle.setX(0,0,0,255);
 			box.strokeStyle.setX(255,255,255,255);
 			box.fillStyle.setMass(100);
 			box.w.P.z = box.dw.z;
 		}
+	}
+
+	void update() {
+		if (currTime > 24500 && currTime < 24800) text1.string = "In the corner";
+		if (currTime > 25500 && currTime < 26400) text1.string = "In the corner\nof the room";
 	}
 }
 

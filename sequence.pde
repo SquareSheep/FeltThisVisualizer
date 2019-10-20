@@ -53,5 +53,4 @@ void addEvents() {
 	events.add(new BassWub(new PVector(0,d*0.2,d),sd + (int) (mspb * 31)));
 	events.add(new SnareWub2(sd + (int) (mspb* 31)));
 	events.add(new StumbleDown119s121());
-	events.add(new RestartSong(84000));
 }

@@ -11,28 +11,24 @@ abstract class Mob {
 class TextBox extends Mob {
 	String string = "";
 	Point p;
-	Point w;
 	SpringValue ang = new SpringValue(0);
 	AColor fillStyle = new AColor(255,255,255,255);
 	AColor strokeStyle = new AColor(255,255,255,255);
 	int timeEnd;
 
-	TextBox(String string, Point p, int timeEnd) {
+	TextBox(String string, Point p) {
 		this.string = string;
 		this.p = p.copy();
-		this.timeEnd = timeEnd;
 	}
 
-	TextBox(String string, float x, float y, float z, int timeEnd) {
+	TextBox(String string, float x, float y, float z) {
 		this.string = string;
 		this.p = new Point(x, y, z);
-		this.timeEnd = timeEnd;
 	}
 
 	void update() {
 		p.update();
 		ang.update();
-		if (currTime > timeEnd) finished = true;
 	}
 
 	void render() {
@@ -43,10 +39,6 @@ class TextBox extends Mob {
 		rotate(ang.x);
 		text(string, 0,0);
 		pop();
-	}
-
-	void addText(String string) {
-		this.string += string;
 	}
 }
 interface FuncInterface {
